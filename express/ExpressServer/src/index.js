@@ -9,7 +9,10 @@ const path = require('path');
 
 const staticpath=  path.join(__dirname, '../public');
 
-app.use(express.static(staticpath));
+const staticpath2=  path.join(__dirname, '../public');
+
+//app.use(express.static(staticpath));
+app.use(express.static(staticpath2));
 
 app.get('/', (req, res)=> {
     res.send("This is express ");
