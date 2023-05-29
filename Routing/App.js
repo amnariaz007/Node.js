@@ -3,7 +3,7 @@ const fs = require('fs');
 const path1 = require('path');
 const port = 3000 
 
-const server = http.createServer(( path1 , res )=> {
+const server = http.createServer(( req, res )=> {
 
 
     fs.readFile('path1', (err, data)=> {
