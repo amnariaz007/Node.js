@@ -1,46 +1,56 @@
 const http = require('http');
 const fs = require('fs');
+const path1 = require('path');
 const port = 3000 
 
-const server = http.createServer(( req, res )=> {
+const server = http.createServer(( path1 , res )=> {
 
-    res.writeHead(200, {'Content-Type': 'text/html'});
+
+    fs.readFile('path1', (err, data)=> {
+        if ( err){
+            console.log("error")
+        }else {
+            res.write(data)
+        }
+        res.end();
+    })
+    // res.writeHead(200, {'Content-Type': 'text/html'});
      
-    const url = req.url;
+    // const url = req.url;
      
-    if(url ==='/about') {
-        res.write(' Welcome to about us page');
-        res.end();
-    }
-    else if(url ==='/contact') {
-        res.write(' Welcome to contact us page');
-        res.end();
-    }
-    else {
-        res.write('Hello World!');
-        res.end();
-    }
+    // if(url ==='/about') {
+    //     res.write(' Welcome to about us page');
+    //     res.end();
+    // }
+    // else if(url ==='/contact') {
+    //     res.write(' Welcome to contact us page');
+    //     res.end();
+    // }
+    // else {
+    //     res.write('Hello World!');
+    //     res.end();
+    // }
 })
 
 
-// module.exports = {
-//     handleRequest : function( req, res ) {
-//         res.writeHead(200, {'Content-type' : 'text/html'})
-//         const path = url.parse(req.url).pathname;
-//         switch(path){
-//             case '/':
-//             renderHTML('./login.html', res)
-//             break;
-//             case 'about' :
-//                 renderHTML('./about.html', res)
-//                 break;
-//                 default:
-//                 res.writeHead(404);
-//                 res.write("page not founf");
-//                 res.end();
-//         }
-//     }
-// }
+module.exports = {
+    handleRequest : function( req, res ) {
+        res.writeHead(200, {'Content-type' : 'text/html'})
+        const path = url.parse(req.url).pathname;
+        switch(path){
+            case '/':
+            renderHTML('./login.html', res)
+            break;
+            case 'about' :
+                renderHTML('./about.html', res)
+                break;
+                default:
+                res.writeHead(404);
+                res.write("page not founf");
+                res.end();
+        }
+    }
+}
 
 server.listen( port, ( error ) => {
     if  ( error){
